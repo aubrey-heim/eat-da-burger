@@ -23,7 +23,40 @@
 </ul>
 
 <h2>Add a Burger</h2>
-<form id="createburger" class="button-size">
-  <textarea type="text" name="burger"></textarea>
+<form id="addburger" class="button-size">
+  <textarea id="inputBurger" type="text" name="burger"></textarea>
   <button type="submit">Save burger!</button>
 </form>
+
+<script type="text/javascript">
+  $(".devour").on("click", function(event) {
+    var id = $(this).data("burgerid");
+
+    $.ajax("/api/burgers/" + id, {
+      type: "PUT"
+    }).then(
+      function() {
+        console.log("Ate burger #", id);
+        location.reload();
+      }
+    );
+  });
+
+  $("#addburger").on("submit", function(event) {
+    event.preventDefault();
+
+    var newBurger = {
+      burger: $("#inputBurger").val().trim()
+    };
+
+    $.ajax("/api/burgers", {
+      type: "POST",
+      data: newBurger
+      }).then(
+      function() {
+        console.log("Added new burger.");
+        location.reload();
+      }
+    );
+  });
+</script>
