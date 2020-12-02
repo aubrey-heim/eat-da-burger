@@ -47,6 +47,17 @@ app.get("/", function(req, res) {
   });
 });
 
+app.post("/api/burgers", function(req, res) {
+  connection.query("INSERT INTO toEat (burger) VALUES (?)", [req.body.burger], function(err, result) {
+    if (err) {
+      return res.status(500).end();
+    }
+
+    res.json({ id: result.insertId });
+    console.log({ id: result.insertId });
+  });
+});
+
 app.listen(PORT, function() {
   console.log("Server listening on: http://localhost:" + PORT);
 });
