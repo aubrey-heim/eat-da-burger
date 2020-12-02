@@ -1,32 +1,47 @@
-<h1>Eat Da Burger!</h1>
+<div class="container">
+  <div class="jumbotron text-center bodyEl jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Eat Da Burger!</h1>
+      <i class="fas fa-hamburger fa-5x"></i>
+    </div>
+  </div>
+  <div class="row">
+    <ul class="list-group col-6 text-center">
+      <li class="list-group-item bodyEl"><h2>Burgers to be Eaten</h2></li>
+      {{#each toEat}}
+      <li class="list-group-item bodyEl">
+        <p>
+          {{this.id}}. {{this.burger}}
 
-<ul>
-  {{#each toEat}}
-  <li>
-    <p>
-      {{this.id}}. {{this.burger}}
+          <button data-burgerid="{{this.id}}" class="ml-3 btn btn-danger devour">Devour!</button>
+        </p> 
+      </li>
+      {{/each}}
+    </ul>
 
-      <button data-burgerid="{{this.id}}" class="devour">Devour!</button>
-    </p>
-  </li>
-  {{/each}}
-</ul>
+    <ul class="list-group col-6 text-center">
+      <li class="list-group-item bodyEl"><h2>Burgers Eaten</h2></li>
+      {{#each eaten}}
+      <li class="list-group-item bodyEl">
+        <p>
+          {{this.id}}. {{this.burger}}
+        </p>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+  
+ 
+  <h2 class="list-group-item bodyEl mt-4 mb-0">Add a Burger</h2>
+  <form id="addburger" class="mb-3 bodyEl">
+    <div class="row px-3">
+      <input class="form-control my-2 col-9 mr-5" id="inputBurger" type="text" name="burger"></input>
+      <button id="submit" class="btn btn-danger col-2" type="submit">Save burger!</button>
+    </div>
+  </form>
 
-<ul>
-  {{#each eaten}}
-  <li>
-    <p>
-      {{this.id}}. {{this.burger}}
-    </p>
-  </li>
-  {{/each}}
-</ul>
-
-<h2>Add a Burger</h2>
-<form id="addburger" class="button-size">
-  <textarea id="inputBurger" type="text" name="burger"></textarea>
-  <button type="submit">Save burger!</button>
-</form>
+  
+</div>
 
 <script type="text/javascript">
   $(".devour").on("click", function(event) {

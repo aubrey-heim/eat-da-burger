@@ -1,0 +1,25 @@
+body {
+    background-image: url("https://images.pexels.com/photos/3566357/pexels-photo-3566357.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #c82922;
+}
+
+.bodyEl {
+    padding: 10px;
+    opacity: 80%;
+    background-color: #FFDB58;
+}
+
+.jumbotron {
+    border-radius: 50%;
+    width: 500px;
+    margin-right:auto;
+    margin-left: auto;
+    margin-top:10px;
+}
+
+.list-group-item {
+    font-weight: bold;  
+}
