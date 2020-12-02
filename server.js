@@ -58,6 +58,28 @@ app.post("/api/burgers", function(req, res) {
   });
 });
 
+app.put("/api/burgers/:id", function(req, res) {
+  let chosenId = req.params.id
+  connection.query("SELECT burger FROM toEat WHERE id = ?", [chosenId], function(err, result) {
+    if (err) {
+      return res.status(500).end();
+    }
+    let eatenBurger = result[0].burger
+    connection.query("INSERT INTO eaten (burger) VALUES (?)", [eatenBurger], function(err, result) {
+      if (err) {
+        return res.status(500).end();
+      }
+      connection.query("DELETE FROM toEat WHERE id = ?", [chosenId], function(err, result) {
+        if (err) {
+          return res.status(500).end();
+        }
+        console.log(`Burger #${chosenId} devoured.`);
+        res.status(200).end();  
+      });
+    });
+  });
+});
+
 app.listen(PORT, function() {
   console.log("Server listening on: http://localhost:" + PORT);
 });
