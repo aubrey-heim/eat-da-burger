@@ -30,7 +30,22 @@ connection.connect(function(err) {
   console.log("connected as id " + connection.threadId);
 });
 
+app.get("/", function(req, res) {
+  connection.query("SELECT * FROM toeat", function(err, data) {
+    if (err) {
+      return res.status(500).end();
+    }
+    let toEatData = data
 
+    connection.query("SELECT * FROM eaten", function(err, data) {
+      if (err) {
+        return res.status(500).end();
+      }
+      let eatenData = data
+      res.render("index", { toEat: toEatData, eaten: eatenData });
+    });
+  });
+});
 
 app.listen(PORT, function() {
   console.log("Server listening on: http://localhost:" + PORT);
