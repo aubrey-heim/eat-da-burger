@@ -75,7 +75,7 @@ app.put("/api/burgers/:id", function(req, res) {
       return res.status(500).end();
     }
     let eatenBurger = result[0].burger
-    connection.query("INSERT INTO eaten (burger) VALUES (?)", [eatenBurger], function(err, result) {
+    connection.query("INSERT INTO Eaten (burger) VALUES (?)", [eatenBurger], function(err, result) {
       if (err) {
         return res.status(500).end();
       }
