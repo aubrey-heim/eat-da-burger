@@ -41,12 +41,14 @@ connection.connect(function(err) {
 app.get("/", function(req, res) {
   connection.query("SELECT * FROM toeat", function(err, data) {
     if (err) {
+      console.log(err)
       return res.status(500).end();
     }
     let toEatData = data
 
     connection.query("SELECT * FROM eaten", function(err, data) {
       if (err) {
+        console.log(err)
         return res.status(500).end();
       }
       let eatenData = data
